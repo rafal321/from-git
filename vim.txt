@@ -1,0 +1,30 @@
+VIM
+------
+dd		cut line
+p		paste line, under cursor
+de		delete till next word
+di"		delete within " "
+ci"		delete within " " , with insert mode
+------
+
+d,$		delete till end of line
+D		del till end of line
+------
+gg		top    of file
+G		bottom of file
+ctrl + b 	page upb0
+ctrl + f 	page down
+w		move to next word	
+b		move to prev word
+0		move to beg of line	
+$		move to end of line
+------
+u		undo
+v		highlight + d  to delete
+------
+0D		delete characters in a line
+
+ma		mark
+d'm		delete to this mark
+
+set nowrap	no wrap

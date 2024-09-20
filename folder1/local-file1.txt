@@ -1,6 +1,13 @@
 aaa
 bbb
 on new branch
-on new branch change 2
-on new branch change 3
+on n branch change 2
+on new  change 3
 on new change 4
+
+
+
+Keep your cursor "" press d, then type /"/e It should delete the [] quotes as well as quotes. This is applicable for muliple lines as well.
+Another way: Keep the cursor in first quotes and type df" It will also delete the text inside quotes and quotes too! Not applicable for multiple lines.
+In both the ways, you execute commands in normal mode.
+
