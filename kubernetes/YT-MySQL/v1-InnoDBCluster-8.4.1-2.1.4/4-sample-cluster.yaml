@@ -1,0 +1,65 @@
+# v-1     - this pretty much works 2024-09-24
+apiVersion: mysql.oracle.com/v2
+kind: InnoDBCluster
+metadata:
+  name: mycluster-v1
+spec:
+  secretName: mypwds
+  instances: 3
+  router:
+    instances: 1
+  tlsUseSelfSigned: true
+  datadirVolumeClaimTemplate:
+    accessModes: ["ReadWriteOnce"]
+    storageClassName: "gp3-exp"
+    resources:
+      requests:
+        storage: 10Gi
+  podSpec:                      # >> OK
+    containers:
+    - name: mysql
+      resources:
+        requests:
+          memory: "1Gi"         # "1Gi"="1024Mi"      #"2048Mi"
+          cpu: "600m"           # "1800m"
+        limits:
+          memory: "2Gi"         # "4Gi"="4096Mi"      #"8192Mi"
+          cpu: "1"              # "3600m"             # time_zone = UTC this is causing issues to deploy
+  mycnf: |
+    [mysqld]
+    lower_case_table_names=1
+    log_bin_trust_function_creators=1
+    binlog_expire_logs_seconds=14400  # 4hrs
+    innodb_buffer_pool_size=1G
+    
+
+
+#=========================================================================================
+# kubectl rollout restart statefulset <statefulset-name>        to trigger a rolling update. 
+
+
+
+# kubectl -n mysql-client exec -it rk- -- bash
+# cat <<EOF >> .my.cnf
+# [client]
+# user=root
+# password=sakila[]1
+# host=mycluster2.mysql-cluster2.svc.cluster.local
+# EOF
+
+
+    # Limits:
+    #   cpu:     1
+    #   memory:  4Gi
+    # Requests:
+    #   cpu:      600m
+    #   memory:   1Gi
+
+# +-------------------------------+------------+
+# | Variable_name                 | Value      |
+# +-------------------------------+------------+
+# | innodb_buffer_pool_size       | 1073741824 |  1G
+# | innodb_buffer_pool_chunk_size | 134217728  |  128MB
+#   innodb_buffer_pool_instances     1
+# +-------------------------------+------------+
+

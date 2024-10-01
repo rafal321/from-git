@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mysql-cluster
+
+# kubectl config set-context --current --namespace mysql-cluster
+# kubectl config view --minify -o jsonpath='{..namespace}'

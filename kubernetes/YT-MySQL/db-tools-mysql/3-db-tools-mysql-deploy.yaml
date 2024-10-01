@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rk-client
+  namespace: mysql-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rk-client
+  template:
+    metadata:
+      labels:
+        app: rk-client
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - eu-west-1a
+      containers:
+      - name: rk-client
+        image: therafk/ubuntu:v15
+        volumeMounts:
+        - name: rk-client-claim-gp3   #x2
+          mountPath: /db-data
+      volumes: 
+      - name: rk-client-claim-gp3   #x2
+        persistentVolumeClaim:
+          claimName: rk-client-pvc    #x1
+
+
+# kubectl config set-context --current --namespace mysql-client
+# kubectl -n mysql-client events --watch |c
+
+# mycluster.mysql-cluster.svc.cluster.local
+# <service-name>.<namespace>.svc.cluster.local
+
+
