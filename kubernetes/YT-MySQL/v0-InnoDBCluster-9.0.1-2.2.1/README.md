@@ -18,7 +18,7 @@ kubectl -n mysql-operator describe po <po_name>
 kubectl create secret generic mypwds \
       --from-literal=rootUser=root \
       --from-literal=rootHost=% \
-      --from-literal=rootPassword="sakila[]1" --dry-run=client -oyaml
+      --from-literal=rootPassword="password" --dry-run=client -oyaml
 kubectl get secrets |c
 kubectl get secret mypwds -oyaml |y
 

@@ -33,7 +33,7 @@ spec:
         image: mysql:8                  # 8.4.2 MySQL Community Server - GPL
         env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:                               #value: "sakila[]1"
+          valueFrom:                               #value: "password"
             secretKeyRef:
               name: mysql-server-secrets
               key: mysqlRootPassword
@@ -43,7 +43,7 @@ spec:
               name: mysql-server-secrets
               key: mysqlUser          
         - name: MYSQL_PASSWORD
-          valueFrom:                      #         value: "admin"
+          valueFrom:                      #         value: "password"
             secretKeyRef:
               name: mysql-server-secrets
               key: mysqlPassword 
