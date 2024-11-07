@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: therafk/apache2:b
+        image: therafk/apache2:g
         ports:
         - containerPort: 80
         resources: {}
