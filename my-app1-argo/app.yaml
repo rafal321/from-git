@@ -12,3 +12,13 @@ spec:
     path: my-app1
   destination:
     server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:      # https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/
+      prune: true
+      selfHeal: true    # say if manual change then revert
+      allowEmpty: true
+    syncOptions:
+      - Validate=true   # say if invalid field
+      - CreateNamespace=false     # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#prune-last
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
