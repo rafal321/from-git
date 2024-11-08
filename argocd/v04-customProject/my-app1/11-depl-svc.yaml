@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custom-depl
+  labels:
+    app: nginx
+    color: blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+      color: blue
+  template:
+    metadata:
+      labels:
+        app: nginx
+        color: blue
+    spec:
+      containers:
+      - name: nginx
+        image: therafk/apache2:b
+        ports:
+        - containerPort: 80
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: custom-svc
+spec:
+  selector:
+    app: nginx
+    color: blue
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
