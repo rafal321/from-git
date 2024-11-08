@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-from-scratch
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io  # terminate app first before deleting argocd application (cleanup)
+spec:
+  source:
+    helm:
+      releaseName: app-from-helm
+      parameters:
+      - name: "replicaCount"
+        value: "6"
+      - name: "image.repository"
+        value: "therafk/apache2"
+      - name: "image.tag"
+        value: "g"
+    repoURL: https://github.com/rafal321/from-git.git
+    targetRevision: HEAD    # Can be: branch name, tag name, commit id 
+    path: v03-argocd-applications/helm/nginx 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rkns1
+  project: default
+
