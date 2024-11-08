@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: custom-app
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io  # terminate app first before deleting argocd application (cleanup)
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rafal321/from-git.git
+    targetRevision: HEAD
+    path: argocd/v04-customProject/my-app1
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:      # https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/
+      prune: true
+      selfHeal: true    # say if manual change then revert
+      allowEmpty: true
+    syncOptions:
+      - Validate=true   # say if invalid field
+      - CreateNamespace=false     # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#prune-last
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+
+
