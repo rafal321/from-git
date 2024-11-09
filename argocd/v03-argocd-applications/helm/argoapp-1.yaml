@@ -19,9 +19,19 @@ spec:
         value: "g"
     repoURL: https://github.com/rafal321/from-git.git
     targetRevision: HEAD    # Can be: branch name, tag name, commit id 
-    path: v03-argocd-applications/helm/nginx 
+    path: argocd/v03-argocd-applications/helm/nginx
   destination:
     server: https://kubernetes.default.svc
     namespace: rkns1
   project: default
 
+# spec:
+#   source:
+#     directory:
+#       include: 'service.yaml,deployment.yaml'
+#   or  exclude
+# ---------
+# spec:
+#   source:
+#     directory:
+#       recurse: true

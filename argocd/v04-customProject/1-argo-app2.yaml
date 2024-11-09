@@ -2,14 +2,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rk-app
+  name: custom-app2
   namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io  # terminate app first before deleting argocd application (cleanup)
 spec:
-  project: default
+  project: project2
   source:
     repoURL: https://github.com/rafal321/from-git.git
     targetRevision: HEAD
-    path: my-app1
+    path: argocd/v04-customProject/my-app2
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
@@ -22,3 +24,5 @@ spec:
       - CreateNamespace=false     # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#prune-last
       - PrunePropagationPolicy=foreground
       - PruneLast=true
+
+

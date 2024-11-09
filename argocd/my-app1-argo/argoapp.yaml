@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/rafal321/from-git.git
     targetRevision: HEAD
-    path: my-app1
+    path: argocd/my-app1
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
@@ -24,3 +24,5 @@ spec:
       - CreateNamespace=false     # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#prune-last
       - PrunePropagationPolicy=foreground
       - PruneLast=true
+
+

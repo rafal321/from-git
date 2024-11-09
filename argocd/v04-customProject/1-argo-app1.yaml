@@ -7,7 +7,7 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io  # terminate app first before deleting argocd application (cleanup)
 spec:
-  project: default
+  project: project1
   source:
     repoURL: https://github.com/rafal321/from-git.git
     targetRevision: HEAD

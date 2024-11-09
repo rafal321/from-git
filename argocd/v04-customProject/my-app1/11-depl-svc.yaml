@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: custom-depl
-  namespace: project-1-ns
+  namespace: project1-ns
   labels:
     app: nginx
     color: blue
@@ -29,7 +29,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: custom-svc
-  namespace: project-1-ns
+  namespace: project1-ns
 spec:
   selector:
     app: nginx
