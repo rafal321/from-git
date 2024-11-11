@@ -17,5 +17,6 @@ spec:
     targetRevision: master
   syncPolicy:
     automated: {}
+    prune: true
     syncOptions:
       - CreateNamespace=true
