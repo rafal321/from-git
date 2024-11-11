@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/project.yaml
+metadata:
+  name: project7
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'
+roles:
+  - name: read-only

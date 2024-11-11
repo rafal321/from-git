@@ -1,0 +1,14 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application         # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
+metadata:
+  name: app-no-automated-sync
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path:
+    repoURL:
+    targetRevision: main
