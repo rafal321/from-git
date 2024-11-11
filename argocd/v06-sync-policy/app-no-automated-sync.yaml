@@ -3,12 +3,18 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application         # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
 metadata:
   name: app-no-automated-sync
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
+    namespace: no-automated-sync
     server: https://kubernetes.default.svc
   project: default
   source:
-    path:
-    repoURL:
-    targetRevision: main
+    path: argocd/v06-sync-policy/my-app6
+    repoURL: https://github.com/rafal321/from-git.git
+    targetRevision: master
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
