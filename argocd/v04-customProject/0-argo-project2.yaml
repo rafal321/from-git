@@ -1,5 +1,5 @@
 apiVersion: argoproj.io/v1alpha1
-kind: AppProject
+kind: AppProject # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/project.yaml
 metadata:
   name: project2
   namespace: argocd
@@ -12,3 +12,4 @@ spec:
     server: '*'
   sourceRepos:
   - 'https://github.com/rafal321/from-git.git'
+

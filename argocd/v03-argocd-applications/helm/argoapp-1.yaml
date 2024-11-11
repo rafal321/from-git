@@ -1,6 +1,6 @@
 ---
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: Application  # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
 metadata:
   name: application-from-scratch
   namespace: argocd
