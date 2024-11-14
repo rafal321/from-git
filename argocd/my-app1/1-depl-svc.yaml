@@ -7,7 +7,7 @@ metadata:
     app: nginx
     color: blue
 spec:
-  replicas: 20
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -23,7 +23,13 @@ spec:
         image: therafk/apache2:g
         ports:
         - containerPort: 80
-        resources: {}
+        resources:
+          requests:
+            memory: "6Mi"
+            cpu: "2m"
+          limits:
+            memory: "12Mi"
+            cpu: "8m"
 ---
 apiVersion: v1
 kind: Service
