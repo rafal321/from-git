@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: argo-demo
-        image: argoproj/rollouts-demo:yellow
+        image: argoproj/rollouts-demo:slow-purple
         ports:
         - containerPort: 8080
         resources:
