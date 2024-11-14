@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rollouts-setweight
+spec:
+  replicas: 20
+  strategy:
+    canary:
+      # steps:
+      # - setWeight: 20
+      # - pause: {}
+      # - setWeight: 40
+      # - pause: {duration: 20s}
+      # - setWeight: 60
+      # - pause: {duration: 20s}
+      # - setWeight: 80
+      # - pause: {duration: 20s}
+      steps:
+      - setWeight: 30
+      - pause: {}
+  selector:
+    matchLabels:
+      app: rollouts-setweight
+  template:
+    metadata:
+      labels:
+        app: rollouts-setweight
+    spec:
+      containers:
+      - name: rollouts-setweight
+        image: therafk/webapp:1.1
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: html_name
+          value: "app-v1.html"
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rollouts-setweight
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: rollouts-setweight

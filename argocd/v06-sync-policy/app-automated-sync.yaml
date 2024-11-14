@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application         # https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/application.yaml
 metadata:
-  name: app-automated-sync
+  name: app-automated-sync2
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -16,7 +16,8 @@ spec:
     repoURL: https://github.com/rafal321/from-git.git
     targetRevision: master
   syncPolicy:
-    automated: {}
-    prune: true
+  # automated: {}  sync is refreshed ever 6 min this allows synk when refreshed
+    automated:      # this allows delete resources as well when syced
+      prune: true
     syncOptions:
       - CreateNamespace=true
