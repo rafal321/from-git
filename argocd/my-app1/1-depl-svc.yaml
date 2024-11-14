@@ -21,7 +21,8 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: therafk/apache2:g
+        image: argoproj/rollouts-demo:blue
+      # image: therafk/apache2:b
         ports:
         - containerPort: 80
         resources:
