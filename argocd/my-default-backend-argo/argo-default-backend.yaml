@@ -21,6 +21,6 @@ spec:
       allowEmpty: true
     syncOptions:
       - Validate=true   # say if invalid field
-      - CreateNamespace=false     # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#prune-last
-      - PrunePropagationPolicy=foreground
+      - CreateNamespace=false                 # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#prune-last
+      - PrunePropagationPolicy=foreground     # https://kubernetes-tutorial.schoolofdevops.com/articles/argo_prune_propogation_policy/
       - PruneLast=true
