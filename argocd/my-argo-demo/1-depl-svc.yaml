@@ -1,48 +1,48 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app1-dep
-  namespace: my-app1
+  name: argo-demo-dep
+  namespace: argo-demo
   labels:
-    app: my-app1
+    app: argo-demo
     color: blue
 spec:
   replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: my-app1
+      app: argo-demo
       color: blue
   template:
     metadata:
       labels:
-        app: my-app1
+        app: argo-demo
         color: blue
     spec:
       containers:
-      - name: my-app1
-      # image: therafk/apache2:b
+      - name: argo-demo
         image: argoproj/rollouts-demo:blue
         ports:
-        - containerPort: 8080 # 80
-        resources: {}
-          # requests:
-          #   memory: "10Mi"
-          #   cpu: "4m"
-          # limits:
-          #   memory: "20Mi"
-          #   cpu: "16m"
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "6m"
+            memory: "4Mi"
+          limits:
+            cpu: "12m"
+            memory: "8Mi"
+            
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app1-svc
-  namespace: my-app1
+  name: argo-demo-svc
+  namespace: argo-demo
   annotations:
     alb.ingress.kubernetes.io/healthcheck-path: /
 spec:
   selector:
-    app: my-app1
+    app: argo-demo
     color: blue
   ports:
     - protocol: TCP

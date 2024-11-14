@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rk-app
+  name: argo-demo
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io  # terminate app first before deleting argocd application (cleanup)
@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/rafal321/from-git.git
     targetRevision: HEAD
-    path: argocd/my-app1
+    path: argocd/my-argo-demo
   destination:
     server: https://kubernetes.default.svc
   syncPolicy:
