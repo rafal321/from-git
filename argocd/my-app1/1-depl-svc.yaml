@@ -7,7 +7,7 @@ metadata:
     app: my-app1
     color: blue
 spec:
-  replicas: 4
+  replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -21,8 +21,7 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: quay.io/argoproj/argocd:blue # argoproj/rollouts-demo:blue
-      # image: therafk/apache2:b
+        image: therafk/apache2:b
         ports:
         - containerPort: 80
         resources:
