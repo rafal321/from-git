@@ -21,16 +21,17 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: therafk/apache2:b
+      # image: therafk/apache2:b
+        image: argoproj/rollouts-demo:blue
         ports:
-        - containerPort: 80
-        resources:
-          requests:
-            memory: "10Mi"
-            cpu: "4m"
-          limits:
-            memory: "20Mi"
-            cpu: "16m"
+        - containerPort: 8080 # 80
+        resources: {}
+          # requests:
+          #   memory: "10Mi"
+          #   cpu: "4m"
+          # limits:
+          #   memory: "20Mi"
+          #   cpu: "16m"
 ---
 apiVersion: v1
 kind: Service
@@ -46,7 +47,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 8080 # 80
 
 # kubectl run curl --image=alpine/curl:8.2.1 -n kube-system -i --tty --rm -- sh
 # while true; do curl -s myapp.default:8080 | grep -e "--"; sleep 1; done
