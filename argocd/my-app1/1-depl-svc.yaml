@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: my-app1
-        image: argoproj/rollouts-demo:blue
+        image: quay.io/argoproj/argocd # argoproj/rollouts-demo:blue
       # image: therafk/apache2:b
         ports:
         - containerPort: 80
