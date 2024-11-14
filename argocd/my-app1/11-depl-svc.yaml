@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-dep
-  namespace: prod
+  namespace: my-app1
   labels:
     app: nginx
     color: blue
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: therafk/apache2:g
+        image: therafk/apache2:b
         ports:
         - containerPort: 80
         resources: {}
@@ -29,7 +29,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-svc
-  namespace: prod
+  namespace: my-app1
 spec:
   selector:
     app: nginx
