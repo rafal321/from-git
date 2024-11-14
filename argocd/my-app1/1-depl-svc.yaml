@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-dep
+  name: my-app1-dep
   namespace: my-app1
   labels:
-    app: nginx
+    app: my-app1
     color: blue
 spec:
-  replicas: 2
-  revisionHistoryLimit: 3
+  replicas: 4
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: nginx
+      app: my-app1
       color: blue
   template:
     metadata:
       labels:
-        app: nginx
+        app: my-app1
         color: blue
     spec:
       containers:
-      - name: nginx
+      - name: my-app1
         image: therafk/apache2:g
         ports:
         - containerPort: 80
@@ -41,7 +41,7 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: /
 spec:
   selector:
-    app: nginx
+    app: my-app1
     color: blue
   ports:
     - protocol: TCP
