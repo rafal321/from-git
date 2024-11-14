@@ -1,9 +1,8 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: default-backend-ing
-  namespace: default-backend
+  name: my-app1-ing  # rk-ing-v1
+  namespace: my-app1
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: rk-ing-v1
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -16,19 +15,21 @@ metadata:
     alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
     alb.ingress.kubernetes.io/target-type: ip
     # SSL
-    alb.ingress.kubernetes.io/ssl-redirect: '443'   # SSL Redirect Setting
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
     # Ingress Groups
     alb.ingress.kubernetes.io/group.name: rk.ing.group
-    alb.ingress.kubernetes.io/group.order: '999'
-    external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.openjawhosting.com
+    # alb.ingress.kubernetes.io/group.order: '0'
+    # external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.openjawhosting.com
 spec:
-  tls:      # this allows skip certificate-arn
-  - hosts:
-      - ops.perf.openjawhosting.com
-  defaultBackend:
-    service:
-      name: default-backend-svc
-      port:
-        number: 80
-
+  rules:
+    - host: myapp1.ops.perf.openjawhosting.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-app1-svc
+                port:
+                  number: 80
