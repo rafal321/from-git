@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-server-cm
+  namespace: mysql-server
+data:
+  my.cnf: |
+    [mysqld]
+    lower_case_table_names=1
+    max_connections = 95
+    innodb_buffer_pool_size=1G
