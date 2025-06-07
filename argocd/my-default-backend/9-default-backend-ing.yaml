@@ -21,11 +21,11 @@ metadata:
     # Ingress Groups
     alb.ingress.kubernetes.io/group.name: rk.ing.group
     alb.ingress.kubernetes.io/group.order: '999'
-    external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.openjawhosting.com
+    external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.hosting.com
 spec:
   tls:      # this allows skip certificate-arn
   - hosts:
-      - ops.perf.openjawhosting.com
+      - ops.perf.hosting.com
   defaultBackend:
     service:
       name: default-backend-svc

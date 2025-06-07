@@ -3,6 +3,11 @@ YT - DevOps Hobbies - argocd playlist
 GIT:
 https://github.com/devopshobbies/argocd-tutorial
 
+
+https://argoproj.github.io/argo-rollouts/features/bluegreen/
+https://hub.docker.com/r/argoproj/rollouts-demo/tags
+docker pull argoproj/rollouts-demo:blue
+
 _______________________________________________________
 YT- 06 - Argocd sync policies and sync options
 https://argo-cd.readthedocs.io/en/latest/user-guide/sync-options/
@@ -216,23 +221,3 @@ kubectl get rolebindings |c
 argo will use sa for executing workflows
 ------
 
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

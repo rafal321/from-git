@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argo-demo-ing  # rk-ing-v1
+  name: argo-squares-ing  # rk-ing-v1
   namespace: argo-demo
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: rk-ing-v1
@@ -20,13 +20,13 @@ metadata:
   # alb.ingress.kubernetes.io/group.order: '0'
 spec:
   rules:
-    - host: argodemo.ops.perf.openjawhosting.com
+    - host: argosquares.ops.perf.hosting.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: argo-demo-svc
+                name: argo-squares-svc
                 port:
                   number: 80

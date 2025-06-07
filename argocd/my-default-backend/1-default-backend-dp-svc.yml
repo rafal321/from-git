@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app-default-backend
-          image: therafk/rkapp21:1.0 
+          image: therafk/httpd:0.1   # therafk/rkapp21:1.0 
           ports:
             - containerPort: 80
           resources: {}

@@ -20,10 +20,10 @@ metadata:
     # Ingress Groups
     alb.ingress.kubernetes.io/group.name: rk.ing.group
     # alb.ingress.kubernetes.io/group.order: '0'
-    # external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.openjawhosting.com
+    # external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.hosting.com
 spec:
   rules:
-    - host: myapp1.ops.perf.openjawhosting.com
+    - host: myapp1.ops.perf.hosting.com
       http:
         paths:
           - path: /
