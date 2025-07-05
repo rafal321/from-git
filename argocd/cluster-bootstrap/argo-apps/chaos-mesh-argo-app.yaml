@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chaos-mesh
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://charts.chaos-mesh.org
+    chart: chaos-mesh
+    targetRevision: "2.7.2"
+    helm:
+      releaseName: chaos-mesh
+      values: |
+        chaosDaemon:
+          runtime: containerd
+          socketPath: /run/containerd/containerd.sock
+        dashboard:
+          securityMode: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chaos-mesh
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+#     - Replace=true
+
+# Remove CRDs
+# helm uninstall would not remove the CRDs, remove them manually by executing:
+# kubectl delete crd $(kubectl get crd | grep 'chaos-mesh.org' | awk '{print $1}')
