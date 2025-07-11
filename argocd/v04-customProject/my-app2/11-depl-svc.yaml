@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: therafk/webapp:1.1
+        image: therafk/webapp:2.1
         ports:
         - containerPort: 80
         resources: {}
