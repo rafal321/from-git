@@ -32,6 +32,7 @@ spec:
       - PrunePropagationPolicy=foreground
       - PruneLast=true
 #     - Replace=true
+# by Rafal
 
 # Remove CRDs
 # helm uninstall would not remove the CRDs, remove them manually by executing:

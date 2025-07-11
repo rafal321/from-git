@@ -1,0 +1,42 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: chaos-mesh
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - name: cluster1
+        server: https://kubernetes.default.svc
+        # Add more clusters here as needed
+      # - name: cluster2
+      #   server: https://your-second-cluster-api
+  template:
+    metadata:
+      name: "chaos-mesh-{{name}}"
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: https://charts.chaos-mesh.org
+        chart: chaos-mesh
+        targetRevision: 2.7.2
+        helm:
+          releaseName: chaos-mesh
+          values: |
+            dashboard:
+              securityMode: false
+          skipCrds: true  # Skip CRD installation
+      destination:
+        server: "{{server}}"
+        namespace: chaos-testing
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+
+# by Ronan

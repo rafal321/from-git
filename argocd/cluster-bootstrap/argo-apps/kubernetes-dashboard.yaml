@@ -1,0 +1,38 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kubernetes-dashboard
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - name: cluster1
+        server: https://kubernetes.default.svc
+        # Add more clusters here as needed
+      # - name: cluster2
+      #   server: https://your-second-cluster-api
+  template:
+    metadata:
+      name: "kubernetes-dashboard-{{name}}"
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        repoURL: https://kubernetes.github.io/dashboard/
+        chart: kubernetes-dashboard
+        targetRevision: "*"  # Replace with current version
+        helm:
+          releaseName: kubernetes-dashboard
+      destination:
+        server: "{{server}}"
+        namespace: kubernetes-dashboard
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+
+# by Ronan
