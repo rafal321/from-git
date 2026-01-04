@@ -7,7 +7,7 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io  # terminate app first before deleting argocd application (cleanup)
 spec:
-  project: project1
+  project: project1 # x11
   source:
     repoURL: https://github.com/rafal321/from-git.git
     targetRevision: HEAD
@@ -18,7 +18,7 @@ spec:
     automated:      # https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/
       prune: true
       selfHeal: true    # say if manual change then revert
-      allowEmpty: true
+      allowEmpty: true 
     syncOptions:
       - Validate=true   # say if invalid field
       - CreateNamespace=false     # https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#prune-last

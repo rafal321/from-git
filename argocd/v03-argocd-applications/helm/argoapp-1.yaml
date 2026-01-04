@@ -7,24 +7,25 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io  # terminate app first before deleting argocd application (cleanup)
 spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: rkns1
   source:
     helm:
       releaseName: app-from-helm
       parameters:
       - name: "replicaCount"
-        value: "6"
+        value: "2"
       - name: "image.repository"
         value: "therafk/apache2"
       - name: "image.tag"
         value: "g"
     repoURL: https://github.com/rafal321/from-git.git
-    targetRevision: HEAD    # Can be: branch name, tag name, commit id 
+    targetRevision: master # HEAD    # Can be: branch name, tag name, commit id 
     path: argocd/v03-argocd-applications/helm/nginx
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: rkns1
-  project: default
 
+# https://www.youtube.com/watch?v=3tzMmhvD6p0&list=PLYrn63eEqAzYttcyB6On1oH35O5rxgDt4&index=3 [49:15]
 # spec:
 #   source:
 #     directory:

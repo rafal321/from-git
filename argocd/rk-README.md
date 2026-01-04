@@ -9,6 +9,18 @@ https://hub.docker.com/r/argoproj/rollouts-demo/tags
 docker pull argoproj/rollouts-demo:blue
 
 _______________________________________________________
+YT- 04 - Argocd project & Defining Argocd projects using manifests and terraform
+
+/home/raf/gitRaf/from-git/argocd/v04-customProject
+
+kubectl get appprojects |c
+
+https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/
+
+
+
+
+_______________________________________________________
 YT- 06 - Argocd sync policies and sync options
 https://argo-cd.readthedocs.io/en/latest/user-guide/sync-options/
 

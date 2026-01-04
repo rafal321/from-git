@@ -7,7 +7,7 @@ metadata:
     app: argo-demo
     color: blue
 spec:
-  replicas: 8
+  replicas: 2
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: argo-demo
-        image: argoproj/rollouts-demo:bad-blue
+        image: argoproj/rollouts-demo:green  #argoproj/rollouts-demo:bad-blue
            # https://hub.docker.com/r/argoproj/rollouts-demo/tags
            # we can test autoscaler as with this settings bad-purple creates a lot of load 
         ports:
