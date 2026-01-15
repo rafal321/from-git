@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: nginx-container
-          image: therafk/httpd:2.1
+          image: therafk/httpd:2.2
           ports:
             - containerPort: 80
           resources:
