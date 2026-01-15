@@ -23,6 +23,7 @@ metadata:
     alb.ingress.kubernetes.io/group.order: '999'
     external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.hosting.com
 spec:
+  ingressClassName: alb
   tls:      # this allows skip certificate-arn
   - hosts:
       - ops.perf.hosting.com
