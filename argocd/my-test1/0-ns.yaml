@@ -1,0 +1,7 @@
+# https://www.youtube.com/watch?v=zGndgdGa1Tc&t=49s
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod

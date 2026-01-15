@@ -22,6 +22,7 @@ metadata:
     # alb.ingress.kubernetes.io/group.order: '0'
     # external-dns.alpha.kubernetes.io/hostname: defaultbackend.ops.perf.hosting.com
 spec:
+  ingressClassName: alb
   rules:
     - host: myapp1.ops.perf.hosting.com
       http:
